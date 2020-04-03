@@ -71,3 +71,5 @@ crashlytics-build.properties
 
 # Rider auto-generates .iml files, and contentModel.xml
 .idea
+.vscode
+.vs
