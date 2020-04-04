@@ -15,7 +15,6 @@ public class UIInventory : MonoBehaviour {
         {
             if (sp.ContainsEmptySlot())
             {
-                Debug.Log("Found empty slot");
                 sp.AddNewItem(item);
                 break;
             }
