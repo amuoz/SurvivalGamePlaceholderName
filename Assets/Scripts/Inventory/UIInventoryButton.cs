@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIInventoryButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler {
+public class UIInventoryButton : MonoBehaviour, IPointerDownHandler {
     [SerializeField]
     private UIInventory inventoryUI;
-    private Tooltip tooltip;
     private bool inventoryHidden;
     
     private void Awake()
     {
         inventoryHidden = true;
-        tooltip = FindObjectOfType<Tooltip>();
     }
     
     public void OnPointerDown(PointerEventData eventData)
@@ -27,15 +25,5 @@ public class UIInventoryButton : MonoBehaviour, IPointerDownHandler, IPointerEnt
             inventoryUI.HideInventory();
             inventoryHidden = true;
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        tooltip.GenerateTooltip("Inventory");
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        tooltip.gameObject.SetActive(false);
     }
 }
