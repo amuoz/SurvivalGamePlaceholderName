@@ -1,21 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
+public class Game : MonoBehaviour
 {
-    public GameObject boxPrefab;
     public int tileSize = 32;
+
+    public Slider mainSlider;
+
+    private Stomach stomach;
 
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject boxInstance = Instantiate (boxPrefab);
+        stomach = FindObjectOfType<Stomach>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateUI();
     }
+
+    private void UpdateUI()
+    {
+        mainSlider.value = stomach.Hunger;
+    }
+
 }
