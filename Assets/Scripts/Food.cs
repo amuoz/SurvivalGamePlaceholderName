@@ -4,26 +4,14 @@ public class Food : MonoBehaviour
 {
     public float size;
     
-        
-    // Start is called before the first frame update
-    void Start()
+    public void Interact(GameObject other)
     {
+        Stomach belly = other.GetComponent<Stomach>();
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
-    void OnTriggerEnter2D(Collider2D player)
-    {
-        if(player.name == "Player")
-        {
-            Stomach belly = player.gameObject.GetComponent<Stomach>();
+        if (belly != null) {
             belly.Feed(size);
         }
+
         Destroy(this.gameObject);
     }
 }

@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     public float speed = 1.5f;
     public bool debugDistance = true;
     private enum State {
-        Movement
+        Movement,
+        Interact
     }
     private State playerState;
     private Dictionary<State, System.Action> stateFunctions;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private void initStateFunctions() {
         stateFunctions = new Dictionary<State, System.Action>();
         stateFunctions[State.Movement] = MoveState;
+        stateFunctions[State.Interact] = InteractState;
     }
 
     // Update is called once per frame
@@ -36,7 +38,20 @@ public class Player : MonoBehaviour
     }
 
     private void MoveState() {
+        bool isActionInput = Input.GetButton("Fire1");
+        if (isActionInput) {
+            PlayerAction();
+        }
+
         MovePlayer();
+    }
+
+    private void InteractState() {
+        PlayerInteract interaction = GetComponent<PlayerInteract>();
+
+        interaction.Interact();
+
+        playerState = State.Movement;
     }
 
     private void MovePlayer() {
@@ -68,5 +83,13 @@ public class Player : MonoBehaviour
             moveX * speed,
             moveY * speed
         );
+    }
+
+    private void PlayerAction() {
+        PlayerInteract interaction = GetComponent<PlayerInteract>();
+
+        if (interaction.HasInteractable()) {
+            playerState = State.Interact;
+        }
     }
 }
