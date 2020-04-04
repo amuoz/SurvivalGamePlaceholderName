@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CraftingSlots : MonoBehaviour {
-    public CraftRecipeDatabase recipeDatabase;
+    private CraftRecipeDatabase recipeDatabase;
     private List<UIItem> uiItems = new List<UIItem>();
     public UIItem craftResultSlot;
+
+    private void Awake()
+    {
+        recipeDatabase = GameObject.Find("Database").GetComponent<CraftRecipeDatabase>();
+    }
 
     public void UpdateRecipe()
     {
