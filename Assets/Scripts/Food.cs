@@ -8,7 +8,6 @@ public class Food : MonoBehaviour
     {
         Stomach belly = other.GetComponent<Stomach>();
         
-    void OnTriggerEnter2D(Collider2D player)
         if (belly != null) {
             belly.Feed(size);
         }
