@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 1.5f;
     public bool debugDistance = true;
     private enum State {
         Movement,
@@ -43,52 +42,17 @@ public class Player : MonoBehaviour
             PlayerAction();
         }
 
-        MovePlayer();
+        GetComponent<PlayerMovement>().Move();
     }
 
     private void InteractState() {
-        PlayerInteract interaction = GetComponent<PlayerInteract>();
-
-        interaction.Interact();
+        GetComponent<PlayerInteraction>().Interact();
 
         playerState = State.Movement;
     }
 
-    private void MovePlayer() {
-        float moveX = 0;
-        float moveY = 0;
-        bool isRightInput = Input.GetKey("d");
-        bool isLeftInput = Input.GetKey("a");
-        bool isDownButton = Input.GetKey("s");
-        bool isUpButton = Input.GetKey("w");
-
-        if (isRightInput) {
-            moveX = 1;
-        } else if (isLeftInput) {
-            moveX = -1;
-        }
-
-        if (isUpButton) {
-            moveY = 1;
-        } else if (isDownButton) {
-            moveY = -1;
-        }
-
-        if (moveX != 0 && moveY != 0) {
-            moveX /= Mathf.Sqrt(2);
-            moveY /= Mathf.Sqrt(2);
-        }
-
-        GetComponent<Rigidbody2D>().velocity = new Vector2(
-            moveX * speed,
-            moveY * speed
-        );
-    }
-
     private void PlayerAction() {
-        PlayerInteract interaction = GetComponent<PlayerInteract>();
-
-        if (interaction.HasInteractable()) {
+        if (GetComponent<PlayerInteraction>().HasInteractable()) {
             playerState = State.Interact;
         }
     }
