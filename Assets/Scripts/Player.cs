@@ -43,18 +43,6 @@ public class Player : MonoBehaviour
             moveY /= Mathf.Sqrt(2);
         }
 
-        // if (inputX > 0) {
-        //     moveX = 1;
-        // } else if (inputX < 0) {
-        //     moveX = -1;
-        // }
-
-        // if (inputY > 0) {
-        //     moveY = 1;
-        // } else if (inputY < 0) {
-        //     moveY = -1;
-        // }
-
         GetComponent<Rigidbody2D>().velocity = new Vector2(
             moveX * speed,
             moveY * speed
