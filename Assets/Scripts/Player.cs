@@ -5,20 +5,41 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 1.5f;
+    public bool debugDistance = true;
+    private enum State {
+        Movement
+    }
+    private State playerState;
+    private Dictionary<State, System.Action> stateFunctions;
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        playerState = State.Movement;
+        initStateFunctions();
+    }
+
+    private void initStateFunctions() {
+        stateFunctions = new Dictionary<State, System.Action>();
+        stateFunctions[State.Movement] = MoveState;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        stateFunctions[playerState]();
+        
+        if (debugDistance) {
+            Debug.DrawLine(
+                transform.position,
+                new Vector3(transform.position.x + 0.15f, transform.position.y + 0.15f, 10),
+                Color.white
+            );
+        }
+    }
+
+    private void MoveState() {
         MovePlayer();
     }
 
-    void MovePlayer()
-    {
+    private void MovePlayer() {
         float moveX = 0;
         float moveY = 0;
         bool isRightInput = Input.GetKey("d");
