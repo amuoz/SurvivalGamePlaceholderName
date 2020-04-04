@@ -7,8 +7,8 @@ InputManager:
   m_Axes:
   - serializedVersion: 3
     m_Name: Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
+    descriptiveName: Right
+    descriptiveNegativeName: Left
     negativeButton: left
     positiveButton: right
     altNegativeButton: a
@@ -23,8 +23,8 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Vertical
-    descriptiveName: 
-    descriptiveNegativeName: 
+    descriptiveName: Down
+    descriptiveNegativeName: Up
     negativeButton: down
     positiveButton: up
     altNegativeButton: s
