@@ -36,4 +36,8 @@ public class PlayerMovement : MonoBehaviour
             moveY * speed
         );
     }
+
+    public void Stop() {
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+    }
 }

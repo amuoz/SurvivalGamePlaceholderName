@@ -60,8 +60,9 @@ public class Player : MonoBehaviour
     }
 
     private void InventoryState() {
-        bool isInventoryInput = Input.GetButtonDown("Fire2");
+        GetComponent<PlayerMovement>().Stop();
 
+        bool isInventoryInput = Input.GetButtonDown("Fire2");
         if (isInventoryInput) {
             CloseInventory();
         }
