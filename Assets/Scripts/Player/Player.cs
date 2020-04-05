@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
         Interact,
         Inventory,
     }
+
     private State playerState;
     private Dictionary<State, System.Action> stateFunctions;
     // Start is called before the first frame update
@@ -39,12 +40,12 @@ public class Player : MonoBehaviour
     }
 
     private void MoveState() {
-        bool isActionInput = Input.GetButton("Fire1");
+        bool isActionInput = Input.GetButtonDown("Fire1");
         if (isActionInput) {
             PlayerAction();
         }
 
-        bool isInventoryInput = Input.GetButton("Fire2");
+        bool isInventoryInput = Input.GetButtonDown("Fire2");
         if (isInventoryInput) {
             OpenInventory();
         }
@@ -59,7 +60,11 @@ public class Player : MonoBehaviour
     }
 
     private void InventoryState() {
+        bool isInventoryInput = Input.GetButtonDown("Fire2");
 
+        if (isInventoryInput) {
+            CloseInventory();
+        }
     }
     private void PlayerAction() {
         if (GetComponent<PlayerInteraction>().HasInteractable()) {
@@ -70,6 +75,11 @@ public class Player : MonoBehaviour
     private void OpenInventory() {
         GetComponent<Inventory>().OpenInventory();
         playerState = State.Inventory;
+    }
+
+    private void CloseInventory() {
+        GetComponent<Inventory>().CloseInventory();
+        playerState = State.Movement;
     }
 
 }
