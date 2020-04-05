@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Food : MonoBehaviour
+public class Food : NetworkBehaviour
 {
     public float size;
     
