@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     public bool debugDistance = true;
     private enum State {
@@ -27,16 +28,22 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
-        stateFunctions[playerState]();
-        
-        if (debugDistance) {
-            Debug.DrawLine(
-                transform.position,
-                new Vector3(transform.position.x + 0.15f, transform.position.y + 0.15f, 10),
-                Color.white
-            );
+    void FixedUpdate() {
+
+        if (this.isLocalPlayer)
+        {
+            stateFunctions[playerState]();
+
+            if (debugDistance)
+            {
+                Debug.DrawLine(
+                    transform.position,
+                    new Vector3(transform.position.x + 0.15f, transform.position.y + 0.15f, 10),
+                    Color.white
+                );
+            }
         }
+    
     }
 
     private void MoveState() {
