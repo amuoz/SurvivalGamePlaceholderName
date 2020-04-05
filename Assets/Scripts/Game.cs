@@ -14,7 +14,7 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stomach = FindObjectOfType<Stomach>();
+        
     }
 
     // Update is called once per frame
@@ -25,7 +25,11 @@ public class Game : MonoBehaviour
 
     private void UpdateUI()
     {
-        mainSlider.value = stomach.Hunger;
+        stomach = FindObjectOfType<Stomach>();
+        if (stomach != null)
+        {
+            mainSlider.value = stomach.Hunger;
+        }
     }
 
 }
