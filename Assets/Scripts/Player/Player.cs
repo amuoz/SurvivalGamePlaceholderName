@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     }
 
     private void MoveState() {
-        bool isActionInput = Input.GetButtonDown("Fire1");
+        bool isActionInput = Input.GetButton("Fire1");
         if (isActionInput) {
             PlayerAction();
         }
