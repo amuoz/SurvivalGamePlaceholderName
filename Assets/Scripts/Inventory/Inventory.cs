@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
-    public List<Item> playerItems = new List<Item>();
-    [SerializeField]
+    public List<Item> inventoryItems = new List<Item>();
     private UIInventory inventoryUI;
     ItemDatabase itemDatabase;
 
     private void Awake()
     {
         itemDatabase = FindObjectOfType<ItemDatabase>();
+        inventoryUI = FindObjectOfType<UIInventory>();
     }
 
     private void Start()
@@ -33,19 +33,19 @@ public class Inventory : MonoBehaviour {
     {
         Item itemToAdd = itemDatabase.GetItem(id);
         inventoryUI.AddItemToUI(itemToAdd);
-        playerItems.Add(itemToAdd);
+        inventoryItems.Add(itemToAdd);
     }
 
     public void GiveItem(string itemName)
     {
         Item itemToAdd = itemDatabase.GetItem(itemName);
         inventoryUI.AddItemToUI(itemToAdd);
-        playerItems.Add(itemToAdd);
+        inventoryItems.Add(itemToAdd);
     }
 
     public Item CheckForItem(int id)
     {
-        return playerItems.Find(item => item.id == id);
+        return inventoryItems.Find(item => item.id == id);
     }
 
     public void RemoveItem(int id)
@@ -54,7 +54,15 @@ public class Inventory : MonoBehaviour {
 
         if (itemToRemove != null)
         {
-            playerItems.Remove(itemToRemove);
+            inventoryItems.Remove(itemToRemove);
         }
+    }
+
+    public void OpenInventory() {
+        inventoryUI.ShowInventory();
+    }
+
+    public void CloseInventory() {
+        inventoryUI.HideInventory();
     }
 }

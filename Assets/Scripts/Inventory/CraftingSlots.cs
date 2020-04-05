@@ -9,7 +9,7 @@ public class CraftingSlots : MonoBehaviour {
 
     private void Awake()
     {
-        recipeDatabase = GameObject.Find("Database").GetComponent<CraftRecipeDatabase>();
+        recipeDatabase = FindObjectOfType<CraftRecipeDatabase>();
     }
 
     public void UpdateRecipe()

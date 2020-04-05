@@ -101,7 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfc85a86226be948ac59fe729f36764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
   debugDistance: 1
 --- !u!61 &4174192756742561724
 BoxCollider2D:
@@ -141,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80fe67e9379b440269dbd7950c59f01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1.5
 --- !u!50 &4011062488832859568
 Rigidbody2D:
   serializedVersion: 4

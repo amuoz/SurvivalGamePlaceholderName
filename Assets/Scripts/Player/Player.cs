@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     public bool debugDistance = true;
     private enum State {
         Movement,
-        Interact
+        Interact,
+        Inventory,
     }
     private State playerState;
     private Dictionary<State, System.Action> stateFunctions;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
         stateFunctions = new Dictionary<State, System.Action>();
         stateFunctions[State.Movement] = MoveState;
         stateFunctions[State.Interact] = InteractState;
+        stateFunctions[State.Inventory] = InventoryState;
     }
 
     // Update is called once per frame
@@ -42,6 +44,11 @@ public class Player : MonoBehaviour
             PlayerAction();
         }
 
+        bool isInventoryInput = Input.GetButton("Fire2");
+        if (isInventoryInput) {
+            OpenInventory();
+        }
+
         GetComponent<PlayerMovement>().Move();
     }
 
@@ -51,9 +58,18 @@ public class Player : MonoBehaviour
         playerState = State.Movement;
     }
 
+    private void InventoryState() {
+
+    }
     private void PlayerAction() {
         if (GetComponent<PlayerInteraction>().HasInteractable()) {
             playerState = State.Interact;
         }
     }
+
+    private void OpenInventory() {
+        GetComponent<Inventory>().OpenInventory();
+        playerState = State.Inventory;
+    }
+
 }

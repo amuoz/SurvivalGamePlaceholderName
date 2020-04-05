@@ -10,6 +10,6 @@ public class UICraftResult : MonoBehaviour, IPointerDownHandler {
     public void OnPointerDown(PointerEventData eventData)
     {
         slotPanel.EmptyAllSlots();
-        inventory.playerItems.Add(GetComponent<UIItem>().item);
+        inventory.inventoryItems.Add(GetComponent<UIItem>().item);
     }
 }
