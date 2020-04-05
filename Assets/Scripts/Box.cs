@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    private bool isOpen = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,16 @@ public class Box : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void CmdInteractionFinished(GameObject other)
+    {
+        if (isOpen) {
+            GetComponent<Inventory>().CloseInventory();
+            isOpen = false;
+        } else {
+            GetComponent<Inventory>().OpenInventory();
+            isOpen = true;
+        }
     }
 }

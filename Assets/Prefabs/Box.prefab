@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5552727732217845591}
   - component: {fileID: 1862495287}
   - component: {fileID: 5696286103874674151}
+  - component: {fileID: 3936219378012701937}
+  - component: {fileID: 8489782341196938330}
   m_Layer: 0
   m_Name: Box
   m_TagString: Box
@@ -71,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1383566201
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 08bb06e47bfd241479ac8de2982b5a05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,3 +145,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae1132ea0497254eb825b0e05c45ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3936219378012701937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586536319687509776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b301281981c32c843ab81de119e7baef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftInventory: 0
+--- !u!114 &8489782341196938330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586536319687509776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad56622c74fd948d2ae3a14bcafbd651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionTime: 0

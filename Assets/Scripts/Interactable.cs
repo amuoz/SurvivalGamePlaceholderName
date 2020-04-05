@@ -48,7 +48,6 @@ public class Interactable : MonoBehaviour
     }
 
     private void ApplyObjectInteraction() {
-        Debug.Log("calling with " + interactingWith);
         this.gameObject.SendMessage("CmdInteractionFinished", interactingWith, SendMessageOptions.DontRequireReceiver);
     }
 
