@@ -4,7 +4,7 @@ public class Food : MonoBehaviour
 {
     public float size;
     
-    public void Interact(GameObject other)
+    public void CmdInteractionFinished(GameObject other)
     {
         Stomach belly = other.GetComponent<Stomach>();
         

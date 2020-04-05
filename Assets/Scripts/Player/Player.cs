@@ -47,7 +47,7 @@ public class Player : NetworkBehaviour
     }
 
     private void MoveState() {
-        bool isActionInput = Input.GetButton("Fire1");
+        bool isActionInput = Input.GetButtonDown("Fire1");
         if (isActionInput) {
             PlayerAction();
         }
@@ -63,7 +63,11 @@ public class Player : NetworkBehaviour
     private void InteractState() {
         GetComponent<PlayerInteraction>().Interact();
 
-        playerState = State.Movement;
+        bool isActionInputOff = Input.GetButtonUp("Fire1");
+        if (isActionInputOff) {
+            GetComponent<PlayerInteraction>().StopInteract();
+            playerState = State.Movement;
+        }
     }
 
     private void InventoryState() {
@@ -95,6 +99,10 @@ public class Player : NetworkBehaviour
             inventory.CloseInventory();
         }
 
+        playerState = State.Movement;
+    }
+
+    public void CmdInteractionFinished() {
         playerState = State.Movement;
     }
 

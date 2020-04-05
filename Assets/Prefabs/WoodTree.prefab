@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4832798236692881178}
   - component: {fileID: -585661622683346900}
   - component: {fileID: 5373305978880235201}
+  - component: {fileID: 2401382273515531447}
   m_Layer: 0
   m_Name: WoodTree
   m_TagString: Untagged
@@ -121,3 +122,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.101207465}
   m_EdgeRadius: 0
+--- !u!114 &2401382273515531447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445492344123471482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad56622c74fd948d2ae3a14bcafbd651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

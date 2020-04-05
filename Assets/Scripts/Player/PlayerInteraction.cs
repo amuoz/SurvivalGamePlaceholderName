@@ -15,10 +15,16 @@ public class PlayerInteraction : MonoBehaviour
     public void Interact() {
         Collider2D interactable = FindAnyInteractable();
 
-        Debug.Log("interactable = " + interactable);
-
         if (interactable != null) {
             interactable.gameObject.SendMessage("Interact", this.gameObject, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    public void StopInteract() {
+        Collider2D interactable = FindAnyInteractable();
+
+        if (interactable != null) {
+            interactable.gameObject.SendMessage("StopInteract", this.gameObject, SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -27,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
         List<Collider2D> interactables = new List<Collider2D>();
 
         foreach(Collider2D collider in hitColliders) {
-            if (collider.gameObject.GetComponent("Interactable") != null) {
+            if (collider.gameObject.GetComponent<Interactable>() != null) {
                 interactables.Add(collider);
             }
         }
