@@ -73,12 +73,20 @@ public class Player : MonoBehaviour
     }
 
     private void OpenInventory() {
-        GetComponent<Inventory>().OpenInventory();
+        Component[] inventories = GetComponents<Inventory>();
+        foreach(Inventory inventory in inventories) {
+            inventory.OpenInventory();
+        }
+
         playerState = State.Inventory;
     }
 
     private void CloseInventory() {
-        GetComponent<Inventory>().CloseInventory();
+        Component[] inventories = GetComponents<Inventory>();
+        foreach(Inventory inventory in inventories) {
+            inventory.CloseInventory();
+        }
+
         playerState = State.Movement;
     }
 

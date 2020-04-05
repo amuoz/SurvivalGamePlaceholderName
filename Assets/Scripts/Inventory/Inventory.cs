@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
     public List<Item> inventoryItems = new List<Item>();
+    [SerializeField]
+    private bool craftInventory = false;
     private UIInventory inventoryUI;
     ItemDatabase itemDatabase;
 
     private void Awake()
     {
         itemDatabase = FindObjectOfType<ItemDatabase>();
-        inventoryUI = FindObjectOfType<UIInventory>();
+        string inventoryName = craftInventory ? "CraftInventory" : "StoreInventory";
+        GameObject hud =  GameObject.FindGameObjectWithTag("HUD");
+        GameObject inventory = hud.transform.Find(inventoryName).gameObject;
+        inventoryUI = inventory.GetComponent<UIInventory>();
     }
 
     private void Start()

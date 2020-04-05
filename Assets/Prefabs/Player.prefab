@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4432843794417109772}
   - component: {fileID: 4011062488832859568}
   - component: {fileID: 488770887503727833}
+  - component: {fileID: 4996715993504705636}
   - component: {fileID: 7571436097819021255}
   - component: {fileID: 5463741416304519178}
   m_Layer: 0
@@ -174,7 +175,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b301281981c32c843ab81de119e7baef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryUI: {fileID: 0}
+  craftInventory: 0
+--- !u!114 &4996715993504705636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4100567495674342997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b301281981c32c843ab81de119e7baef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftInventory: 1
 --- !u!114 &7571436097819021255
 MonoBehaviour:
   m_ObjectHideFlags: 0
