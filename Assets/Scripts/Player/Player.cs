@@ -6,11 +6,14 @@ using Mirror;
 
 public class Player : NetworkBehaviour
 {
-    public bool debugDistance = true;
+
+    [SerializeField]
+    private bool debugDistance = true;
 
     private PlayerMovement playerMovement;
     private PlayerInteraction playerInteraction;
     private Component[] inventories;
+
     private enum State {
         Movement,
         Interact,
@@ -39,31 +42,38 @@ public class Player : NetworkBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (playerState == State.Movement) {
+            bool isActionInput = Input.GetButtonDown("Fire1");
+            if (isActionInput) {
+                PlayerAction();
+            }
+
+            bool isInventoryInput = Input.GetButtonDown("Fire2");
+            if (isInventoryInput) {
+                OpenInventory();
+            }
+        } else if (playerState == State.Inventory) {
+            bool isInventoryInput = Input.GetButtonDown("Fire2");
+            if (isInventoryInput) {
+                CloseInventory();
+            }
+        }
+    }
+    void FixedUpdate() {
 
         if(hasAuthority)
             stateFunctions[playerState]();
 
-        if (debugDistance)
-        {
+        if (debugDistance) {
             Debug.DrawLine(
-                transform.position,
-                new Vector3(transform.position.x + 0.15f, transform.position.y + 0.15f, 10),
+                new Vector2(transform.position.x, transform.position.y + 0.1f),
+                new Vector2(transform.position.x + 0.3f, transform.position.y + 0.3f),
                 Color.white
             );
         }
     }
 
     private void MoveState() {
-        bool isActionInput = Input.GetButtonDown("Fire1");
-        if (isActionInput) {
-            PlayerAction();
-        }
-
-        bool isInventoryInput = Input.GetButtonDown("Fire2");
-        if (isInventoryInput) {
-            OpenInventory();
-        }
-
         playerMovement.Move();
     }
 
@@ -80,11 +90,6 @@ public class Player : NetworkBehaviour
 
     private void InventoryState() {
         playerMovement.CmdStop();
-
-        bool isInventoryInput = Input.GetButtonDown("Fire2");
-        if (isInventoryInput) {
-            CloseInventory();
-        }
     }
     private void PlayerAction() {
         
