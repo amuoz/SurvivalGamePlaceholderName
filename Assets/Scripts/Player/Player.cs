@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour
+public class Player : MonoBehaviour
 {
     public bool debugDistance = true;
     private enum State {
@@ -30,20 +30,17 @@ public class Player : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate() {
 
-        if (this.isLocalPlayer)
-        {
-            stateFunctions[playerState]();
+        stateFunctions[playerState]();
 
-            if (debugDistance)
-            {
-                Debug.DrawLine(
-                    transform.position,
-                    new Vector3(transform.position.x + 0.15f, transform.position.y + 0.15f, 10),
-                    Color.white
-                );
-            }
+        if (debugDistance)
+        {
+            Debug.DrawLine(
+                transform.position,
+                new Vector3(transform.position.x + 0.15f, transform.position.y + 0.15f, 10),
+                Color.white
+            );
         }
-    
+
     }
 
     private void MoveState() {
