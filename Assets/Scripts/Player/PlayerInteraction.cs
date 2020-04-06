@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private float interactDistance = 0.15f;
+    private float interactDistance = 0.3f;
+    private float interactOffsetY = 0.1f;
 
     public bool HasInteractable() {
         Collider2D[] interactables = FindInteractables();
@@ -28,8 +29,15 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    private Collider2D[] GetInteractableColliders() {
+        float x = transform.position.x;
+        float y = transform.position.y + interactOffsetY;
+        
+        return Physics2D.OverlapCircleAll(new Vector2(x, y), interactDistance);
+    }
+
     private Collider2D[] FindInteractables() {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, interactDistance);
+        Collider2D[] hitColliders = GetInteractableColliders();
         List<Collider2D> interactables = new List<Collider2D>();
 
         foreach(Collider2D collider in hitColliders) {

@@ -5,7 +5,9 @@ using UnityEngine.Networking;
 
 public class Player : MonoBehaviour
 {
-    public bool debugDistance = true;
+    [SerializeField]
+    
+    private bool debugDistance = true;
     private enum State {
         Movement,
         Interact,
@@ -28,15 +30,15 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void Update() {
 
         stateFunctions[playerState]();
 
         if (debugDistance)
         {
             Debug.DrawLine(
-                transform.position,
-                new Vector3(transform.position.x + 0.15f, transform.position.y + 0.15f, 10),
+                new Vector2(transform.position.x, transform.position.y + 0.1f),
+                new Vector2(transform.position.x + 0.3f, transform.position.y + 0.3f),
                 Color.white
             );
         }

@@ -64,10 +64,12 @@ public class Inventory : MonoBehaviour {
     }
 
     public void OpenInventory() {
+        Debug.Log("Open inventory!");
         inventoryUI.ShowInventory();
     }
 
     public void CloseInventory() {
+        Debug.Log("Close inventory!");
         inventoryUI.HideInventory();
     }
 }
