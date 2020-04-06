@@ -31,11 +31,28 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (playerState == State.Movement) {
+            bool isActionInput = Input.GetButtonDown("Fire1");
+            if (isActionInput) {
+                PlayerAction();
+            }
+
+            bool isInventoryInput = Input.GetButtonDown("Fire2");
+            if (isInventoryInput) {
+                OpenInventory();
+            }
+        } else if (playerState == State.Inventory) {
+            bool isInventoryInput = Input.GetButtonDown("Fire2");
+            if (isInventoryInput) {
+                CloseInventory();
+            }
+        }
+    }
+    void FixedUpdate() {
 
         stateFunctions[playerState]();
 
-        if (debugDistance)
-        {
+        if (debugDistance) {
             Debug.DrawLine(
                 new Vector2(transform.position.x, transform.position.y + 0.1f),
                 new Vector2(transform.position.x + 0.3f, transform.position.y + 0.3f),
@@ -46,16 +63,6 @@ public class Player : MonoBehaviour
     }
 
     private void MoveState() {
-        bool isActionInput = Input.GetButtonDown("Fire1");
-        if (isActionInput) {
-            PlayerAction();
-        }
-
-        bool isInventoryInput = Input.GetButtonDown("Fire2");
-        if (isInventoryInput) {
-            OpenInventory();
-        }
-
         GetComponent<PlayerMovement>().Move();
     }
 
@@ -71,11 +78,6 @@ public class Player : MonoBehaviour
 
     private void InventoryState() {
         GetComponent<PlayerMovement>().Stop();
-
-        bool isInventoryInput = Input.GetButtonDown("Fire2");
-        if (isInventoryInput) {
-            CloseInventory();
-        }
     }
     private void PlayerAction() {
         if (GetComponent<PlayerInteraction>().HasInteractable()) {
