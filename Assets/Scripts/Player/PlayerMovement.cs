@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     public float speed = 1.5f;
 
@@ -26,18 +27,17 @@ public class PlayerMovement : MonoBehaviour
             moveY = -1;
         }
 
-        if (moveX != 0 && moveY != 0) {
-            moveX /= Mathf.Sqrt(2);
-            moveY /= Mathf.Sqrt(2);
-        }
-
-        GetComponent<Rigidbody2D>().velocity = new Vector2(
-            moveX * speed,
-            moveY * speed
-        );
+        CmdExecuteMovement(new Vector2(moveX, moveY).normalized);
     }
 
-    public void Stop() {
+    [Command]
+    private void CmdExecuteMovement(Vector2 direction)
+    {
+        GetComponent<Rigidbody2D>().velocity = direction * speed;
+    }
+
+    [Command]
+    public void CmdStop() {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 }

@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Mirror;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     public bool debugDistance = true;
+
+    private PlayerMovement playerMovement;
+    private PlayerInteraction playerInteraction;
+    private Component[] inventories;
     private enum State {
         Movement,
         Interact,
@@ -18,6 +23,11 @@ public class Player : MonoBehaviour
     void Start() {
         playerState = State.Movement;
         initStateFunctions();
+
+        //Component inizializations
+        playerMovement = GetComponent<PlayerMovement>();
+        playerInteraction = GetComponent<PlayerInteraction>();
+        inventories = GetComponents<Inventory>();
     }
 
     private void initStateFunctions() {
@@ -28,9 +38,10 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void Update() {
 
-        stateFunctions[playerState]();
+        if(hasAuthority)
+            stateFunctions[playerState]();
 
         if (debugDistance)
         {
@@ -40,7 +51,6 @@ public class Player : MonoBehaviour
                 Color.white
             );
         }
-
     }
 
     private void MoveState() {
@@ -54,21 +64,22 @@ public class Player : MonoBehaviour
             OpenInventory();
         }
 
-        GetComponent<PlayerMovement>().Move();
+        playerMovement.Move();
     }
 
     private void InteractState() {
-        GetComponent<PlayerInteraction>().Interact();
+        Debug.Log("player interaction: ");
+        playerInteraction.Interact();
 
         bool isActionInputOff = Input.GetButtonUp("Fire1");
         if (isActionInputOff) {
-            GetComponent<PlayerInteraction>().StopInteract();
+            playerInteraction.StopInteract();
             playerState = State.Movement;
         }
     }
 
     private void InventoryState() {
-        GetComponent<PlayerMovement>().Stop();
+        playerMovement.CmdStop();
 
         bool isInventoryInput = Input.GetButtonDown("Fire2");
         if (isInventoryInput) {
@@ -76,13 +87,13 @@ public class Player : MonoBehaviour
         }
     }
     private void PlayerAction() {
+        
         if (GetComponent<PlayerInteraction>().HasInteractable()) {
             playerState = State.Interact;
         }
     }
 
     private void OpenInventory() {
-        Component[] inventories = GetComponents<Inventory>();
         foreach(Inventory inventory in inventories) {
             inventory.OpenInventory();
         }
@@ -91,7 +102,7 @@ public class Player : MonoBehaviour
     }
 
     private void CloseInventory() {
-        Component[] inventories = GetComponents<Inventory>();
+
         foreach(Inventory inventory in inventories) {
             inventory.CloseInventory();
         }
@@ -102,5 +113,4 @@ public class Player : MonoBehaviour
     public void CmdInteractionFinished() {
         playerState = State.Movement;
     }
-
 }

@@ -9,21 +9,18 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     private float interactionTime = 0.0f;
     private GameObject interactingWith = null;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentInteractionTime > interactionTime) {
-            CompleteInteraction();
-        }
-
+        // Debug.Log(interactingState);
         if (interactingState) {
+            
             currentInteractionTime += Time.deltaTime;
+            if (currentInteractionTime > interactionTime)
+            {
+                CompleteInteraction();
+            }
         } else {
             currentInteractionTime = 0.0f;
         }

@@ -29,6 +29,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     private Collider2D[] FindInteractables() {
+        //TODO: usar public static Collider2D[] OverlapCircleAll(Vector2 point, float radius, int layerMask);      
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, interactDistance);
         List<Collider2D> interactables = new List<Collider2D>();
 
@@ -49,7 +50,8 @@ public class PlayerInteraction : MonoBehaviour
             int i = 0;
 
             while (interactable == null || i < interactables.Length) {
-                if (interactables[i].name != "Player") {
+                //TODO: usar layermask
+                if (interactables[i].name != this.name) {
                     interactable = interactables[i];
                 }
 
