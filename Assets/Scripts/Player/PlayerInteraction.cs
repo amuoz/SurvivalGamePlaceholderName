@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    private float interactionProgress = 0.0f;
+    private float fullInteractionTime = 0.0f;
     private float interactDistance = 0.3f;
     private float interactOffsetY = 0.1f;
+
+    private void Start() {
+        fullInteractionTime = 0.0f;
+    }
+
+    private void FixedUpdate() {
+        if (fullInteractionTime != 0.0f) {
+            interactionProgress += Time.deltaTime;
+        }
+    }
 
     public bool HasInteractable() {
         Collider2D[] interactables = FindInteractables();
@@ -17,6 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         Collider2D interactable = FindAnyInteractable();
 
         if (interactable != null) {
+            fullInteractionTime = interactable.gameObject.GetComponent<Interactable>().FullInteractionTime();
             interactable.gameObject.SendMessage("Interact", this.gameObject, SendMessageOptions.DontRequireReceiver);
         }
     }
@@ -25,7 +38,20 @@ public class PlayerInteraction : MonoBehaviour
         Collider2D interactable = FindAnyInteractable();
 
         if (interactable != null) {
+            CmdInteractionFinished();
             interactable.gameObject.SendMessage("StopInteract", this.gameObject, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    public bool IsInteracting() {
+        return fullInteractionTime != 0.0f;
+    }
+
+    public float GetProgress() {
+        if (IsInteracting()) {
+            return 100 * interactionProgress / fullInteractionTime;
+        } else {
+            return 0.0f;
         }
     }
 
@@ -69,5 +95,10 @@ public class PlayerInteraction : MonoBehaviour
         } else {
             return null;
         }
+    }
+
+    private void CmdInteractionFinished() {
+        fullInteractionTime = 0.0f;
+        interactionProgress = 0.0f;
     }
 }

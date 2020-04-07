@@ -14,14 +14,11 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         if (interactingState) {
-            
             currentInteractionTime += Time.deltaTime;
             if (currentInteractionTime > interactionTime)
             {
                 CompleteInteraction();
             }
-        } else {
-            currentInteractionTime = 0.0f;
         }
     }
 
@@ -35,6 +32,11 @@ public class Interactable : MonoBehaviour
     {
         interactingState = false;
         interactingWith = null;
+        currentInteractionTime = 0.0f;
+    }
+
+    public float FullInteractionTime() {
+        return interactionTime;
     }
 
     private void CompleteInteraction() {

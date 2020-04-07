@@ -425,6 +425,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3025281161925530265, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452483027603981483, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452483027603981483, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357683684315339818, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357683684315339818, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8944463076151599611, guid: 9fe43148660d0f0429b6816402518345,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -544,6 +569,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992584268633195982, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992584268633195982, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fe43148660d0f0429b6816402518345, type: 3}
@@ -1568,6 +1603,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileSize: 32
   mainSlider: {fileID: 471079918}
+  interactionSlider: {fileID: 1852522034}
+  interactionPanel: {fileID: 0}
 --- !u!4 &1149250802
 Transform:
   m_ObjectHideFlags: 0
@@ -2085,6 +2122,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1716039355}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1852522034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7949134279406299943, guid: 9fe43148660d0f0429b6816402518345,
+    type: 3}
+  m_PrefabInstance: {fileID: 471079916}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1884739721
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -799,6 +799,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileSize: 32
   mainSlider: {fileID: 88910305}
+  interactionSlider: {fileID: 0}
+  interactionPanel: {fileID: 0}
 --- !u!114 &561443117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2570,6 +2572,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3025281161925530265, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452483027603981483, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452483027603981483, guid: 9fe43148660d0f0429b6816402518345,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8944463076151599611, guid: 9fe43148660d0f0429b6816402518345,
         type: 3}
       propertyPath: m_AnchorMax.x
