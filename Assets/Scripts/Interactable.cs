@@ -13,7 +13,6 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(interactingState);
         if (interactingState) {
             
             currentInteractionTime += Time.deltaTime;

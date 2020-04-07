@@ -14,7 +14,8 @@ public class WoodTree : MonoBehaviour
         
     }
 
-    public void CmdInteractionFinished(GameObject other) {
+    public void CmdInteractionFinished(GameObject other)
+    {
         
     }
 }

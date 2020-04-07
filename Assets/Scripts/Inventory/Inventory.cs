@@ -20,18 +20,6 @@ public class Inventory : MonoBehaviour {
 
     private void Start()
     {
-        GiveItem(1);
-        GiveItem(2);
-        GiveItem(3);
-        GiveItem(1);
-        GiveItem(2);
-        GiveItem(3);
-        GiveItem(1);
-        GiveItem(2);
-        GiveItem(3);
-        GiveItem(1);
-        GiveItem(2);
-        GiveItem(3);
     }
 
     public void GiveItem(int id)
@@ -64,12 +52,10 @@ public class Inventory : MonoBehaviour {
     }
 
     public void OpenInventory() {
-        Debug.Log("Open inventory!");
         inventoryUI.ShowInventory();
     }
 
     public void CloseInventory() {
-        Debug.Log("Close inventory!");
         inventoryUI.HideInventory();
     }
 }

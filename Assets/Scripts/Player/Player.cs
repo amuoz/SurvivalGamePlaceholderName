@@ -12,7 +12,7 @@ public class Player : NetworkBehaviour
 
     private PlayerMovement playerMovement;
     private PlayerInteraction playerInteraction;
-    private Component[] inventories;
+    private PlayerInventory playerInventory;
 
     private enum State {
         Movement,
@@ -30,7 +30,7 @@ public class Player : NetworkBehaviour
         //Component inizializations
         playerMovement = GetComponent<PlayerMovement>();
         playerInteraction = GetComponent<PlayerInteraction>();
-        inventories = GetComponents<Inventory>();
+        playerInventory = GetComponent<PlayerInventory>();
     }
 
     private void initStateFunctions() {
@@ -78,7 +78,6 @@ public class Player : NetworkBehaviour
     }
 
     private void InteractState() {
-        Debug.Log("player interaction: ");
         playerInteraction.Interact();
 
         bool isActionInputOff = Input.GetButtonUp("Fire1");
@@ -99,18 +98,13 @@ public class Player : NetworkBehaviour
     }
 
     private void OpenInventory() {
-        foreach(Inventory inventory in inventories) {
-            inventory.OpenInventory();
-        }
+        playerInventory.OpenAll();
 
         playerState = State.Inventory;
     }
 
     private void CloseInventory() {
-
-        foreach(Inventory inventory in inventories) {
-            inventory.CloseInventory();
-        }
+        playerInventory.CloseAll();
 
         playerState = State.Movement;
     }
