@@ -6,14 +6,6 @@ public class WoodTree : MonoBehaviour
 {
     private int resourceId = 1;
     // Start is called before the first frame update
-    void Start() {
-        
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
-    }
 
     public void CmdInteractionFinished(GameObject other)
     {

@@ -5,17 +5,21 @@ using Mirror;
 
 public class PlayerInteraction : NetworkBehaviour
 {
+    [SyncVar]
     private float interactionProgress = 0.0f;
+    [SyncVar]
     private float fullInteractionTime = 0.0f;
     private float interactDistance = 0.3f;
     private float interactOffsetY = 0.1f;
 
     private void Start() {
         fullInteractionTime = 0.0f;
+        if(hasAuthority)
+            Game.Instance.interaction = this;
     }
 
     private void FixedUpdate() {
-        if (fullInteractionTime != 0.0f) {
+        if (fullInteractionTime != 0.0f && isServer) {
             interactionProgress += Time.deltaTime;
         }
     }

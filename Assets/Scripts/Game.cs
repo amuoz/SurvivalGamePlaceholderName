@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class Game : MonoBehaviour
+public class Game : SingletonComponent<Game>
 {
     public int tileSize = 32;
 
@@ -11,13 +12,17 @@ public class Game : MonoBehaviour
     private Slider mainSlider;
     private GameObject interactionSlider;
     private GameObject interactionPanel;
+    public PlayerInteraction interaction { get;  set; }
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GameObject hud =  GameObject.FindGameObjectWithTag("HUD");
         interactionPanel = hud.transform.Find("InteractionPanel").gameObject;
         interactionSlider = interactionPanel.transform.Find("InteractionSlider").gameObject;
+        interactionPanel.SetActive(false);
+        interactionSlider.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,9 +47,9 @@ public class Game : MonoBehaviour
     }
 
     private void UpdateInteractionProgress() {
-        PlayerInteraction interaction = FindObjectOfType<PlayerInteraction>();
-
-        if (interaction != null) {
+        
+        if (interaction != null && interaction.hasAuthority) {
+            
             float progress = interaction.GetProgress();
 
             if (progress != 0.0f) {

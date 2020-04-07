@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using Mirror;
 
-public class Stomach : MonoBehaviour
+public class Stomach : NetworkBehaviour
 {
     private float hunger = 100.0f;
 
@@ -8,12 +9,6 @@ public class Stomach : MonoBehaviour
     private float decay = 1f;
 
     public float Hunger => hunger;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
