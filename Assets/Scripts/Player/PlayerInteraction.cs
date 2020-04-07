@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteraction : NetworkBehaviour
 {
     private float interactionProgress = 0.0f;
     private float fullInteractionTime = 0.0f;
@@ -25,21 +26,24 @@ public class PlayerInteraction : MonoBehaviour
         return interactables.Length > 0;
     }
 
-    public void Interact() {
+    [Command]
+    public void CmdInteract() {
         Collider2D interactable = FindAnyInteractable();
 
         if (interactable != null) {
-            fullInteractionTime = interactable.gameObject.GetComponent<Interactable>().FullInteractionTime();
-            interactable.gameObject.SendMessage("Interact", this.gameObject, SendMessageOptions.DontRequireReceiver);
+            Interactable intComponent = interactable.gameObject.GetComponent<Interactable>();
+            fullInteractionTime = intComponent.FullInteractionTime();
+            intComponent.Interact(this.gameObject);
         }
     }
 
-    public void StopInteract() {
+    [Command]
+    public void CmdStopInteract() {
         Collider2D interactable = FindAnyInteractable();
 
         if (interactable != null) {
             CmdInteractionFinished();
-            interactable.gameObject.SendMessage("StopInteract", this.gameObject, SendMessageOptions.DontRequireReceiver);
+            interactable.gameObject.GetComponent<Interactable>().StopInteract();
         }
     }
 

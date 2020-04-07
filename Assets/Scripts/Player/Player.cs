@@ -78,11 +78,11 @@ public class Player : NetworkBehaviour
     }
 
     private void InteractState() {
-        playerInteraction.Interact();
+        playerInteraction.CmdInteract();
 
         bool isActionInputOff = Input.GetButtonUp("Fire1");
         if (isActionInputOff) {
-            playerInteraction.StopInteract();
+            playerInteraction.CmdStopInteract();
             playerState = State.Movement;
         }
     }
